@@ -25,7 +25,7 @@ _zsh_highlight_highlighter_url_predicate()
 }
 
 
-_zsh_highlight_highlighter_pattern_paint()
+_zsh_highlight_highlighter_url_paint()
 {
   local -a match mbegin mend
   local -a MATCH MBEGIN MEND
