@@ -17,14 +17,15 @@ _zsh_highlight_url_clear_cache()
   _ZSH_HIGHLIGHT_URL_HIGHLIGHTER_CACHE=()
 }
 
+# Whether the root highlighter should be called or not.
+_zsh_highlight_highlighter_url_predicate()
 
-_zsh_highlight_url_highlighter_predicate()
 {
   _zsh_highlight_buffer_modified
 }
 
 
-_zsh_highlight_url_highlighter()
+_zsh_highlight_highlighter_pattern_paint()
 {
   local -a match mbegin mend
   local -a MATCH MBEGIN MEND
