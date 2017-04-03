@@ -31,11 +31,11 @@ _zsh_highlight_url_highlighter()
   local -a matches match matches_starts matches_ends
   local start end match_count
   local status_code
-  
+
   local remaining_buffer="$BUFFER"
   local buffer_length=$#BUFFER
   local offset=0
-  
+
   until [[ -z "$remaining_buffer" ]]; do
     if [[ "$remaining_buffer" =~ '(https?://([^ ]+[.])+([^ ]+)) ' ]]; then
       start=$((mbegin[1]-1))
@@ -51,8 +51,8 @@ _zsh_highlight_url_highlighter()
   done
 
   local match_count=$#matches
-  local i
-  
+  local i style
+
   for ((i=1; $i <= $match_count; i++)); do
     match=$matches[$i]
     # debug "Match: $match"
@@ -67,9 +67,11 @@ _zsh_highlight_url_highlighter()
       _ZSH_HIGHLIGHT_URL_HIGHLIGHTER_CACHE[$match]=$status_code
     fi
     if [[ "$status_code" == "200" ]]; then
-      region_highlight+=("$matches_starts[$i] $matches_ends[$i] ${ZSH_HIGHLIGHT_STYLES[url-good]}")
+      # region_highlight+=("$matches_starts[$i] $matches_ends[$i] ${ZSH_HIGHLIGHT_STYLES[url-good]}")
+      style=url-good
     else
-      region_highlight+=("$matches_starts[$i] $matches_ends[$i] ${ZSH_HIGHLIGHT_STYLES[url-bad]}")
+      # region_highlight+=("$matches_starts[$i] $matches_ends[$i] ${ZSH_HIGHLIGHT_STYLES[url-bad]}")
+      style=url-bad
     fi
   done
 }
